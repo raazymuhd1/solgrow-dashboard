@@ -1,1 +1,1 @@
-export { default as logo } from "./images/sample-logo.png"
+export { default as logo } from "./images/reflect-logo.jpg"
