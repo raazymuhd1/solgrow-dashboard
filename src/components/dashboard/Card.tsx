@@ -3,7 +3,13 @@ import Image from "next/image"
 import { ICard } from "@/constants"
 import { logo } from "@/assets"
 
-const Card: FC<ICard> = ({ title, logo, tokenAmount, valueInUsd, isMcCap }) => {
+interface IProps {
+  title: string;
+  tokenHeld: string;
+  valueInUsd: string; 
+}
+
+const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
   return (
     <div className="h-[150px] w-[260px] bg-bg-card rounded-[15px] text-[#fff] p-[15px] border-none">
 
@@ -16,8 +22,8 @@ const Card: FC<ICard> = ({ title, logo, tokenAmount, valueInUsd, isMcCap }) => {
             </div>
 
             <div className="flex flex-col items-start gap-[5px] mt-[20px]">
-                <h2 className="text-[22px] font-bold"> {tokenAmount} </h2>
-                <p className={`${isMcCap ? "text-[34px]" : "text-[16px]"}`}> { valueInUsd }  </p>
+                <h2 className="text-[22px] font-bold"> {tokenHeld} </h2>
+                <p className={`text-[16px]`}> { valueInUsd }  </p>
             </div>
         </aside>
        {/* </div> */}

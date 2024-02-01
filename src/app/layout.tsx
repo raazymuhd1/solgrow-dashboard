@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 import { Provider } from "@/components" 
+import ReflectProvider from "@/Context"
 
 export const metadata: Metadata = {
   title: 'Simple Dashboard',
@@ -18,11 +19,13 @@ export default function RootLayout({
   return (
       <html lang="en">
         <Provider>
-          <body className="bg-[#2a2e43]">
-                    {/* header */}
-                {children}
-                    {/* footer */}
-            </body>
+          <ReflectProvider>
+            <body className="bg-[#2a2e43]">
+                      {/* header */}
+                  {children}
+                      {/* footer */}
+              </body>
+          </ReflectProvider>
         </Provider>
       </html>
   )
