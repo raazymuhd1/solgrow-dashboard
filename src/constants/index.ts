@@ -2,6 +2,10 @@
 import { logo } from "@/assets"
 import { StaticImageData } from "next/image";
 
+
+export const whitepaperLink = 'https://reflect-finance.gitbook.io/reflect-finance/'
+export const buyReflectLink = 'https://jup.ag/swap/SOL-REFLECT_ADZaQNyQfU3uPDkrqPkxuG6GzDBEYQ3gMXFXTNSqXr1G'
+
 export interface ICard {
     id: number;
     title: string;

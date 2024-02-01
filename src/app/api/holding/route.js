@@ -45,6 +45,10 @@ export async function GET(request, response) {
         balance += tokenBalance;
     }
 
+    if(!balance && associatedTokenAccounts.length <= 0) {
+        return NextResponse({ error: "something wrong" }, { status: 500 })
+    }
+    
     return NextResponse.json({ balance, associatedTokenAccounts }, { headers, status: 200 })
 
 }

@@ -1,24 +1,29 @@
 "use client"
-import React, { useRef, FC, ChangeEvent } from 'react'
+import React, { useRef, FC, ChangeEvent, KeyboardEvent } from 'react'
 
 interface IProps {
-   handleInput: (e: ChangeEvent<HTMLInputElement>) => void; 
+   handleInput: (event: KeyboardEvent<HTMLInputElement>) => void; 
+   handleChange: (event: ChangeEvent<HTMLInputElement>) => void; 
+   value: string;
 }
 
-const InputField: FC<IProps> = ({ handleInput }) => {
+const InputField: FC<IProps> = ({ handleInput, handleChange, value }) => {
 
   
   //#44298c
   return (
-    <div className="lg:w-[93%] w-[95%] h-[100px] mt-[2px] overflow-hidden rounded-[15px]">
+    <fieldset className="lg:w-[93%] w-[95%] bg-bg-card h-[80px] mt-[15px] overflow-hidden rounded-[15px]">
+        <legend className="text-[#fff] translate-x-[50px] font-bold md:text-[16px] text-[14px]"> Check your rewards </legend>
         <input
-            className="p-[20px] text-[#7c6baa] input-field bg-bg-card border-[2px] border-[#353853] focus:border-[#44298c] rounded-[15px] placeholder:text-center placeholder:text-[#7c6baa] placeholder:font-semibold placeholder:leading-[250px] font-semibold outline-none w-full h-full mt-[30px]"
-            placeholder='Paste Wallet' 
+            className="p-[10px] text-[#7c6baa] input-field bg-bg-card border-[2px] border-[#353853] focus:border-[#44298c] rounded-[15px] placeholder:text-center placeholder:text-[#7c6baa] placeholder:font-semibold focus:placeholder:text-[#fff] text-center font-semibold outline-none w-full h-full"
+            placeholder='Paste wallet' 
             name="wallet" 
             id=""
-            onInput={handleInput} 
+            value={value}
+            onChange={handleChange}
+            onKeyDown={handleInput} 
         />
-    </div >
+    </fieldset >
   )
 }
 

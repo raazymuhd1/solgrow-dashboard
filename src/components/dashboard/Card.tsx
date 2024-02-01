@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import Image from "next/image"
 import { ICard } from "@/constants"
 import { logo } from "@/assets"
+import millify from "millify"
 
 interface IProps {
   title: string;
@@ -22,7 +23,7 @@ const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
             </div>
 
             <div className="flex flex-col items-start gap-[5px] mt-[20px]">
-                <h2 className="text-[22px] font-bold"> {tokenHeld} </h2>
+                <h2 className="text-[22px] font-bold"> {millify(Number(tokenHeld))} </h2>
                 <p className={`text-[16px]`}> { valueInUsd }  </p>
             </div>
         </aside>

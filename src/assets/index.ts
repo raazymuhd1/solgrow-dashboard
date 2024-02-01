@@ -1,1 +1,2 @@
 export { default as logo } from "./images/reflect-logo.jpg"
+export { default as banner } from "./images/banner.jpg"
