@@ -2,6 +2,7 @@
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
 export const serverUrl = "http://localhost:4000/api"
+export const serverUrl2 = "/api"
 export const testWallet = "4CvBHXkcZHTsxoJSkjy47ebxtqviuHSVmfCCArekTXXa"
 
 /* Constants for RPC Connection the Solana Blockchain */

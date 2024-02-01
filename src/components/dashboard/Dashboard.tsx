@@ -21,16 +21,15 @@ const Dashboard = () => {
      const { fetchHold } = useReflectContext();
      const wallet = useAnchorWallet()
 
-
     const handleInputWallet = async(e: ChangeEvent<HTMLInputElement>) => {
         let data;
         const value = e.target.value
-        console.log(value)
 
         try {
             const { balance, associatedTokenAccounts } =  await fetchHold((value))
             console.log(balance)
-            setTokenHeld(balance)
+
+            if(balance)  setTokenHeld(balance)
         } catch(err) {
             console.log(err)
         }

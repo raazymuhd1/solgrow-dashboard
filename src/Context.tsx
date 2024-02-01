@@ -1,10 +1,14 @@
 "use client"
 import { createContext, useContext, ReactNode } from "react"
-import { connection, serverUrl, testWallet } from "@/utils/helper"
+import { connection, serverUrl, serverUrl2, testWallet } from "@/utils/helper"
 
 interface IData {
     balance: string;
     associatedTokenAccounts: string[];
+}
+
+interface ITest {
+    walletAddr: string;
 }
 
 interface IContext {
@@ -12,7 +16,7 @@ interface IContext {
 }
 
 const initialContext: IContext = {
-    fetchHold: async(wallet: string): Promise<IData> => ({ balance: "0", associatedTokenAccounts: ['']})
+    fetchHold: async(wallet: string): Promise<IData> => ({ balance: "0", associatedTokenAccounts: ['']}),
 }
 
 const ReflectContext = createContext(initialContext);
@@ -24,7 +28,7 @@ const ReflectProvider = ({children}: { children: ReactNode }) => {
          let data;
 
            try {
-              const res = await fetch(`${serverUrl}/holding?walletAddress=${wallet}`)
+              const res = await fetch(`${serverUrl2}/holding?walletAddress=${wallet}`)
               data = await res.json();
               console.log(data)
             } catch(err) {
@@ -32,11 +36,12 @@ const ReflectProvider = ({children}: { children: ReactNode }) => {
            }
            return data
     }
+
     
 
     return (
         <ReflectContext.Provider value={{
-            fetchHold
+            fetchHold,
         }}>
            { children }
         </ReflectContext.Provider>
