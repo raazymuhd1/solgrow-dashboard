@@ -12,7 +12,7 @@ interface IProps {
 
 const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
   return (
-    <div className="h-[150px] w-[260px] bg-bg-card rounded-[15px] text-[#fff] p-[15px] border-none">
+    <div className="h-[150px] md:w-[50%] w-[100%] bg-bg-card rounded-[15px] text-[#fff] p-[15px] border-none">
 
        {/* <div className="flex items-start gap-[10px] justify-center"> */}
 

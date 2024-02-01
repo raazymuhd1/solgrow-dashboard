@@ -21,9 +21,7 @@ export default function RootLayout({
         <Provider>
           <ReflectProvider>
             <body className="bg-[#2a2e43]">
-                      {/* header */}
                   {children}
-                      {/* footer */}
               </body>
           </ReflectProvider>
         </Provider>
