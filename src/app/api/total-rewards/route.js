@@ -1,21 +1,30 @@
 import { NextRequest, NextResponse } from "next/server"
-import { TOKEN_2022_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { connection } from "@/utils/helper"
+import Redis from 'ioredis';
+import { headers } from "@/utils/helper"
 
-const DECIMALS = 9;
-const TOKEN_ADDRESS = 'ADZaQNyQfU3uPDkrqPkxuG6GzDBEYQ3gMXFXTNSqXr1G';
-const PAIR_ADDRESS = '2nugi2lr5fy5rnxyrk67emkua2wywoya1wmbczkrrf2y';
+const redis_client = new Redis({
+  host: process.env.REDIS_DB_HOST,
+  password: process.env.REDIS_DB_PASSWORD,
+  port: process.env.REDIS_DB_PORT,
+  db: 0 
+});
 
-const headers = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    }
+redis_client.on('error', function (err) {
+  console.error('Redis error:', err);
+});
 
 export async function GET(request, response) {
-
     
-    return NextResponse.json({ msg: "ok" }, { headers, status: 200 })
+    try{
+        const val = await redis_client.get('totalBalance');
+        console.log('val', val);
+
+        return NextResponse.json({ totalRewards: val }, { headers, status: 200 })
+
+  } catch(error){
+        console.error(error);
+         return NextResponse.json({ error: error }, { headers, status: 500 })
+  }
 
 }
 

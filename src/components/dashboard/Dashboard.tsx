@@ -1,12 +1,7 @@
 "use client"
 import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react"
 import Image from "next/image"
-import { useAnchorWallet, AnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { web3, Program, AnchorProvider } from "@project-serum/anchor"
-import { connection,  serverUrl, testWallet } from "@/utils/helper";
-import { PublicKey } from "@solana/web3.js"
-import { TOKEN_PROGRAM_ID, AccountLayout } from '@solana/spl-token'
 import { useReflectContext } from "@/Context"
 import { cards } from '@/constants'
 import { logo } from "@/assets"
@@ -23,46 +18,69 @@ import { whitepaperLink, buyReflectLink } from '@/constants';
 const Dashboard = () => {
      const [mounted, setMounted] = useState(false);
      const [tokenHeld, setTokenHeld] = useState("0")
+     const [tokenRewards, setTokenRewards] = useState("0")
+     const [totalRewards, setTotalRewards] = useState("0")
      const [isLoading, setIsLoading] = useState(false)
      const [inputValue, setInputValue] = useState("");
+     const [tokenPriceUsd, setTokenPriceUsd] = useState('0');
 
-     const { fetchHold } = useReflectContext();
-     const wallet = useAnchorWallet()
+     const usdPriceHeld = Number(tokenHeld) * Number(tokenPriceUsd)
+     const usdPriceRewards =  Number(tokenRewards) * Number(tokenPriceUsd) //tokenRewards != null && tokenPriceUsd != null ?
+     const totRewardsUsd = Number(totalRewards) * Number(tokenPriceUsd)
+
+     const { fetchHold, fetchTokenPrice, fetchRewards, fetchTotalRewards } = useReflectContext();
 
      const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value)
+        const value = e.target.value
+
+        setInputValue(value)
         console.log(inputValue)
      }
 
+     useEffect(() => {
+        const fetchPriceAndTotalRewards = async() => {
+            try {
+                const totRewards = await fetchTotalRewards();
+                const priceInUsd = await fetchTokenPrice();
+
+                setTokenPriceUsd(priceInUsd)
+                setTotalRewards(totRewards)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+
+        fetchPriceAndTotalRewards()
+
+     }, [fetchTotalRewards, fetchTokenPrice])
+
     const handleInputWallet = async(e: KeyboardEvent<HTMLInputElement>) => {
-        let data, balance, associatedTokenAccounts;
+        let data;
         const keyCode = e.keyCode
 
-        console.log(keyCode)
-
-        // if(inputValue.length > 0 && inputValue.length != (43 || 42) || inputValue.length > 43 ) {
-        //     toast.error(`invalid address ${inputValue.length}`)
-        //     return;
-        // }
-
-        if(!inputValue || inputValue.length <= 0) {
-            toast.error("input cannot be empty")
-            return;
-        }
+          if(inputValue.length <= 0 || !inputValue && keyCode == 13) {
+              toast.error("input cannot be empty", { duration: 1000 })
+              return;
+          }
         
         try {
             // only fetch the data if the input box is not empty
             if(inputValue && inputValue.length > 0 && keyCode == 13) {
                 setIsLoading(true)
                 console.log(isLoading)
-                const data =  await fetchHold(inputValue)
-                balance = data.balance;
-                associatedTokenAccounts = data.associatedTokenAccounts;
+                const balance =  await fetchHold(inputValue)
+                const rewards = await fetchRewards(inputValue);
+                // const totRewards = await fetchTotalRewards();
+
+                setTokenRewards(rewards)
+                // setTotalRewards(totRewards)
+
+                console.log(rewards)
                
-                if(data || balance) {
+                if(balance) {
                     setTokenHeld(balance)
                     setIsLoading(false)
-                    toast.success("data fetched")
+                    toast.success("data successfully fetched")
                 } else {
                     setIsLoading(false)
                     toast.error("no data for this user")
@@ -107,8 +125,8 @@ const Dashboard = () => {
                             {/* { cards.map(card => (
                                 <Card key={card.id} { ...card } />
                             )) } */}
-                            <Card { ...{title: "$REFLECT Rewards", tokenHeld: "", valueInUsd: "$5400", isMcCap: true  }} />
-                            <Card { ...{ title: "$REFLECT Held", tokenHeld: Number(tokenHeld).toFixed(2), valueInUsd: "$4500" }} />
+                            <Card { ...{title: "$REFLECT Rewards", tokenHeld: Number(tokenRewards).toFixed(2), valueInUsd: usdPriceRewards.toFixed(2), isMcCap: true  }} />
+                            <Card { ...{ title: "$REFLECT Held", tokenHeld: Number(tokenHeld).toFixed(2), valueInUsd: usdPriceHeld.toFixed(2) }} />
                         </div>
 
                         <InputField value={inputValue} handleChange={handleChange} handleInput={handleInputWallet} />
@@ -119,10 +137,10 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <BigCard />
+                    <BigCard totalRewards={totRewardsUsd.toFixed(2)} />
                 </aside>
 
-                <div className="h-[300px] w-full">
+                <div className="md:h-[300px] sm:h-[200px] h-[150px] lg:h-[330px] w-full">
                     <Banner />
                 </div>
             </div>

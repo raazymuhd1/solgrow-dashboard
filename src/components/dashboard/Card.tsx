@@ -11,6 +11,10 @@ interface IProps {
 }
 
 const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
+
+   console.log(valueInUsd)
+   console.log(tokenHeld)
+
   return (
     <div className="h-[150px] md:w-[50%] w-[100%] bg-bg-card rounded-[15px] text-[#fff] p-[15px] border-none">
 
@@ -23,8 +27,9 @@ const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
             </div>
 
             <div className="flex flex-col items-start gap-[5px] mt-[20px]">
-                <h2 className="text-[22px] font-bold"> {millify(Number(tokenHeld))} </h2>
-                <p className={`text-[16px]`}> { valueInUsd }  </p>
+                {  tokenHeld && <h2 className="text-[22px] font-bold"> {  millify(Number(tokenHeld)) || 0} </h2> } 
+                {/* {  rewards && <h2 className="text-[22px] font-bold"> {  millify(Number(rewards)) || 0} </h2> }  */}
+                <p className={`text-[16px]`}> ${ millify(Number(valueInUsd)) || 0}  </p>
             </div>
         </aside>
        {/* </div> */}

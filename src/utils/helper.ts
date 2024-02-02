@@ -11,6 +11,12 @@ export const endpoint =
   process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL || clusterApiUrl("devnet");
 export const connection = new Connection(endpoint, commitmentLevel);
 
+export const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+}
+
 /* Constants for the Deployed "Hello World" Program */
 // export const reflectdprogramId = new PublicKey(idl.metadata.address);
 // export const reflectprogramInterface = JSON.parse(JSON.stringify(idl));

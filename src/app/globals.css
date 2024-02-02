@@ -83,8 +83,24 @@ body {
     }
 }
 
-/* banner */
+/* banner for dekstop */
 .banner {
     background-image: url("../assets/images/banner.jpg");
-    object-fit: cover;
+    object-fit: contain;
+}
+
+/* banner for tablet */
+@media screen and(min-width: 400px) {
+    .banner {
+        background-image: url("../assets/images/mobile-banner.png");
+        object-fit: cover;
+    }
+}
+
+/* banner for mobile */
+@media screen and(min-width: 700px) {
+    .banner {
+        background-image: url("../assets/images/mobile-banner.png");
+        object-fit: cover;
+    }
 }

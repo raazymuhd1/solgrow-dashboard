@@ -1,9 +1,17 @@
-import React from 'react'
+import { FC } from 'react'
 import Image from "next/image"
 import { logo } from "@/assets"
 import { shareLink } from "@/constants"
+import millify from "millify"
 
-const BigCard = () => {
+interface IProps {
+    totalRewards: string;
+}
+
+const BigCard: FC<IProps> = ({ totalRewards }) => {
+
+    console.log(totalRewards)
+
   return (
     <div className="xl:h-[250px] h-[250px] xl:w-[35%] mt-[20px] w-[100%] md:mb-0 mb-[30px] border-none text-[#fff] bg-bg-card p-[10px] rounded-[10px]">
 
@@ -13,7 +21,7 @@ const BigCard = () => {
 
                 <div>
                     <h3 className="lg:text-[16px] text-[14px]"> Total Rewards </h3>
-                    <p className="lg:text-[18px] text-[16px] font-semibold"> $142.323 </p>
+                    <p className="lg:text-[18px] text-[16px] font-semibold"> ${millify(Number(totalRewards)) || 0 } </p>
                 </div>
             </aside>
 
@@ -22,7 +30,7 @@ const BigCard = () => {
 
                 <div>
                     <h3 className="lg:text-[16px] text-[14px]"> Total Burned </h3>
-                    <p className="lg:text-[18px] text-[16px] font-semibold"> $142.323 </p>
+                    <p className="lg:text-[18px] text-[16px] font-semibold"> 150M </p>
                 </div>
             </aside>
 

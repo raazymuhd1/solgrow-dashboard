@@ -1,3 +1,4 @@
+"use client"
 import { Dashboard, LoadingSkeleton } from "@/components"
 
 export default function Home() {
