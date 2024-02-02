@@ -40,11 +40,11 @@ const Dashboard = () => {
      useEffect(() => {
         const fetchPriceAndTotalRewards = async() => {
             try {
-                const totRewards = await fetchTotalRewards();
+                // const totRewards = await fetchTotalRewards();
                 const priceInUsd = await fetchTokenPrice();
 
                 setTokenPriceUsd(priceInUsd)
-                setTotalRewards(totRewards)
+                // setTotalRewards(totRewards)
             } catch(err) {
                 console.log(err)
             }
@@ -70,12 +70,12 @@ const Dashboard = () => {
                 console.log(isLoading)
                 const balance =  await fetchHold(inputValue)
                 const rewards = await fetchRewards(inputValue);
-                // const totRewards = await fetchTotalRewards();
+                const totRewards = await fetchTotalRewards();
 
                 setTokenRewards(rewards)
-                // setTotalRewards(totRewards)
+                setTotalRewards(totRewards)
 
-                console.log(rewards)
+                console.log("total rewards", totRewards)
                
                 if(balance) {
                     setTokenHeld(balance)
