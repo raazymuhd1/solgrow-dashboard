@@ -10,7 +10,7 @@ const Banner = () => {
         <Image 
           src={banner} 
           alt="banner" 
-          className="max-w-[100%] rouned-[15px] h-auto object-cover" 
+          className="max-w-[100%] xl:w-full rouned-[15px] h-auto object-cover" 
         />
     </div>
   )
