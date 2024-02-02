@@ -140,7 +140,7 @@ const Dashboard = () => {
                     <BigCard totalRewards={totRewardsUsd.toFixed(2)} />
                 </aside>
 
-                <div className="md:h-[300px] sm:h-[200px] h-[150px] lg:h-[330px] w-full">
+                <div className="md:h-[300px] sm:h-[200px] h-[150px] lg:h-[330px] xl:h-[390px] w-full">
                     <Banner />
                 </div>
             </div>
