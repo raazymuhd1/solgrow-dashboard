@@ -126,7 +126,7 @@ const Dashboard = () => {
                         <InputField value={inputValue} handleChange={handleChange} handleInput={handleInputWallet} />
 
                         <div className="md:mt-[2px] mt-[-15px] md:mb-0 mb-[10px] h-[100px] flex flex-row items-center gap-[8px]">
-                            <Button link={buySolgrowLink} styles="btn-gradient" parentStyles='btn-gradient' title="BUY $REFLECT" />
+                            <Button link={buySolgrowLink} styles="btn-gradient" parentStyles='btn-gradient' title="BUY $SOLGROW" />
                             <Button link={whitepaperLink} styles="bg-[#2a2e43]" parentStyles='btn-gradient' title="WHITEPAPER" />
                         </div>
                     </div>
