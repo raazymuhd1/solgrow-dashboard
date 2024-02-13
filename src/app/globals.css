@@ -70,6 +70,10 @@ body::-webkit-scrollbar-thumb {
     width: fit-content !important;
 }
 
+.input-field {
+    transition: background-image 1.8s ease-in-out;
+}
+
 .input-field:focus {
     background-image: var(--gradient-bg);
     color: #fff;
