@@ -16,7 +16,3 @@ export const headers = {
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 }
-
-/* Constants for the Deployed "Hello World" Program */
-// export const reflectdprogramId = new PublicKey(idl.metadata.address);
-// export const reflectprogramInterface = JSON.parse(JSON.stringify(idl));

@@ -1,6 +1,6 @@
 "use client"
 import { createContext, useContext, ReactNode, useState } from "react"
-import { connection, serverUrl, serverUrl2, testWallet } from "@/utils/helper"
+import { serverUrl2 } from "@/utils/helper"
 
 interface IData {
     balance: string;

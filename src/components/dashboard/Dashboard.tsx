@@ -3,8 +3,7 @@ import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react"
 import Image from "next/image"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useReflectContext } from "@/Context"
-import { cards } from '@/constants'
-import { logo } from "@/assets"
+import { logo, solgrow } from "@/assets"
 import Card from "./Card"
 import InputField from "./InputField"
 import BigCard from "./BigCard"
@@ -13,7 +12,7 @@ import Banner from "../banner/Banner"
 import LoadingSkeleton from "../loading/Loading"
 
 import { toast, Toaster } from "react-hot-toast"; 
-import { whitepaperLink, buyReflectLink } from '@/constants';
+import { whitepaperLink, buySolgrowLink } from '@/constants';
 
 const Dashboard = () => {
      const [mounted, setMounted] = useState(false);
@@ -40,11 +39,9 @@ const Dashboard = () => {
      useEffect(() => {
         const fetchPriceAndTotalRewards = async() => {
             try {
-                // const totRewards = await fetchTotalRewards();
                 const priceInUsd = await fetchTokenPrice();
 
                 setTokenPriceUsd(priceInUsd)
-                // setTotalRewards(totRewards)
             } catch(err) {
                 console.log(err)
             }
@@ -68,9 +65,9 @@ const Dashboard = () => {
             if(inputValue && inputValue.length > 0 && keyCode == 13) {
                 setIsLoading(true)
                 console.log(isLoading)
-                const balance =  await fetchHold(inputValue)
-                const rewards = await fetchRewards(inputValue);
-                const totRewards = await fetchTotalRewards();
+                const balance: string =  await fetchHold(inputValue)
+                const rewards: string = await fetchRewards(inputValue);
+                const totRewards: string = await fetchTotalRewards();
 
                 setTokenRewards(rewards)
                 setTotalRewards(totRewards)
@@ -106,12 +103,12 @@ const Dashboard = () => {
                 <div className="flex items-center md:flex-row flex-col justify-between gap-[15px]">
                     <aside className="flex md:flex-row flex-col items-center gap-[15px]">
                         <Image 
-                            className="lg:w-[50px] lg:h-[50px] w-[35px] h-[35px] rounded-[50%]"
-                            src={logo} 
+                            className="lg:w-[50px] lg:h-[50px] w-[35px] object-contain h-[35px] rounded-[50%]"
+                            src={solgrow} 
                             alt="logo" 
                         />
                         <h2 className="lg:text-[24px] text-[#fff] md:text-[22] text-[14px] font-bold uppercase whitespace-nowrap">
-                            Reflect Finance - dashboard
+                           Solgrow - dashboard
                         </h2>
                     </aside>
                     
@@ -122,17 +119,14 @@ const Dashboard = () => {
                 <aside className="flex lg:flex-row lg:justify-between lg:gap-[14px] mt-[35px] mb-[30px] flex-col-reverse w-[100%] md:items-start items-center gap-[8px]">
                     <div className="lg:mt-[20px] mt-[10px] lg:w-[60%] w-full">
                         <div className="flex w-full md:flex-nowrap flex-wrap items-center md:justify-between justify-center lg:gap-[20px] gap-[20px]">
-                            {/* { cards.map(card => (
-                                <Card key={card.id} { ...card } />
-                            )) } */}
-                            <Card { ...{title: "$REFLECT Rewards", tokenHeld: Number(tokenRewards).toFixed(2), valueInUsd: usdPriceRewards.toFixed(2), isMcCap: true  }} />
-                            <Card { ...{ title: "$REFLECT Held", tokenHeld: Number(tokenHeld).toFixed(2), valueInUsd: usdPriceHeld.toFixed(2) }} />
+                            <Card { ...{title: "$SOLGROW Rewards", tokenHeld: Number(tokenRewards).toFixed(2), valueInUsd: usdPriceRewards.toFixed(2), isMcCap: true  }} />
+                            <Card { ...{ title: "$SOLGROW Held", tokenHeld: Number(tokenHeld).toFixed(2), valueInUsd: usdPriceHeld.toFixed(2) }} />
                         </div>
 
                         <InputField value={inputValue} handleChange={handleChange} handleInput={handleInputWallet} />
 
                         <div className="md:mt-[2px] mt-[-15px] md:mb-0 mb-[10px] h-[100px] flex flex-row items-center gap-[8px]">
-                            <Button link={buyReflectLink} styles="btn-gradient" parentStyles='btn-gradient' title="BUY $REFLECT" />
+                            <Button link={buySolgrowLink} styles="btn-gradient" parentStyles='btn-gradient' title="BUY $REFLECT" />
                             <Button link={whitepaperLink} styles="bg-[#2a2e43]" parentStyles='btn-gradient' title="WHITEPAPER" />
                         </div>
                     </div>

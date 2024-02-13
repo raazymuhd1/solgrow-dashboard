@@ -5,8 +5,9 @@ import { Provider } from "@/components"
 import ReflectProvider from "@/Context"
 
 export const metadata: Metadata = {
-  title: 'Reflect Dashboard',
-  description: 'Reflect finance dashboard',
+  title: 'Solgrow - Dashboard',
+  description: 'Solgrow dashboard',
+  keywords: ["solgrow", "solgrow dashboard"]
 }
 
 export default function RootLayout({

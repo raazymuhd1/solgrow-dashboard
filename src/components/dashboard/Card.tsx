@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Image from "next/image"
 import { ICard } from "@/constants"
-import { logo } from "@/assets"
+import { logo, solgrow } from "@/assets"
 import millify from "millify"
 
 interface IProps {
@@ -22,7 +22,7 @@ const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
 
         <aside className="flex items-center flex-col">
             <div className="flex items-center justify-center gap-[10px]">
-                 <Image src={logo} alt="logo" className="w-[30px] h-[30px] rounded-[50%]" />
+                 <Image src={solgrow} alt="logo" className="w-[30px] h-[30px] rounded-[50%] object-contain" />
                 <h3 className="lg:text-[18px] md:text-[16px] text-[14px] font-semibold whitespace-nowrap"> { title } </h3>
             </div>
 
