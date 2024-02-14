@@ -30,7 +30,7 @@ const BigCard: FC<IProps> = ({ totalRewards }) => {
 
                 <div>
                     <h3 className="lg:text-[16px] text-[14px]"> Total Burned </h3>
-                    <p className="lg:text-[18px] text-[16px] font-semibold"> 0 </p>
+                    <p className="lg:text-[18px] text-[16px] font-semibold"> 20M </p>
                 </div>
             </aside>
 
