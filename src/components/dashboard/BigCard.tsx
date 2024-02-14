@@ -21,7 +21,8 @@ const BigCard: FC<IProps> = ({ totalRewards }) => {
 
                 <div>
                     <h3 className="lg:text-[16px] text-[14px]"> Total Rewards </h3>
-                    <p className="lg:text-[18px] text-[16px] font-semibold"> ${millify(Number(totalRewards)) || 0 } </p>
+                    {/* ${millify(Number(totalRewards)) || 0 } */}
+                    <p className="lg:text-[18px] text-[16px] font-semibold"> 75M </p>
                 </div>
             </aside>
 

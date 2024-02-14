@@ -29,7 +29,7 @@ const Card: FC<IProps> = ({ title, tokenHeld, valueInUsd }) => {
             <div className="flex flex-col items-start gap-[5px] mt-[20px]">
                 {  tokenHeld && <h2 className="text-[22px] font-bold"> {  millify(Number(tokenHeld)) || 0} </h2> } 
                 {/* {  rewards && <h2 className="text-[22px] font-bold"> {  millify(Number(rewards)) || 0} </h2> }  */}
-                <p className={`text-[16px]`}> ${ millify(Number(valueInUsd)) || 0}  </p>
+                {/* <p className={`text-[16px]`}> ${ millify(Number(valueInUsd)) || 0}  </p> */}
             </div>
         </aside>
        {/* </div> */}
