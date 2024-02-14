@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server"
 import { TOKEN_2022_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { connection, headers } from "@/utils/helper"
 
-const TOKEN_ADDRESS = 'ADZaQNyQfU3uPDkrqPkxuG6GzDBEYQ3gMXFXTNSqXr1G';
-const PAIR_ADDRESS = '2nugi2lr5fy5rnxyrk67emkua2wywoya1wmbczkrrf2y';
+const TOKEN_ADDRESS = 'MgboT9GvcUijqQ5uErdLnGSiZsHUWhPNq1FsAQowwE4';
+const PAIR_ADDRESS = '8s8CFAKYp85G1ioSCwAoQfZWiNqvWEDXN9fYG1ZDmhqd';
 
 
 export async function GET(request, response) {
